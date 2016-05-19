@@ -30,7 +30,7 @@
     
     NSMutableArray *result = [[super layoutAttributesForElementsInRect:rect] mutableCopy];
     
-    NSLog(@"---------------");
+    //NSLog(@"---------------");
     // Modify the layout attributes as needed here
     for (UICollectionViewLayoutAttributes *attr in result) {
         CGFloat distanceFromCentre = fabs(attr.center.x - self.collectionView.contentOffset.x - self.collectionView.bounds.size.width / 2);
@@ -40,10 +40,13 @@
 
         attr.alpha = 1 * scale;
         
-        NSLog(@"scale: %f", scale);
-        attr.transform = CGAffineTransformMakeScale(scale, scale);
+        //NSLog(@"scale: %f", scale);
+        //attr.transform = CGAffineTransformMakeScale(2, 2);
+        
+        CATransform3D newTransform = CATransform3DMakeScale(scale, scale, 1.0);
 
-        attr.transform3D = CATransform3DMakeRotation(distanceFromCentre / 5 * M_PI/180, 0.0, 1.0, 0.0);
+
+        attr.transform3D = CATransform3DConcat(newTransform, CATransform3DMakeRotation(distanceFromCentre / 5 * M_PI/180, 0.0, 1.0, 0.0)) ;
         
     }
     
