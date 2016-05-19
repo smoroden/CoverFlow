@@ -29,7 +29,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     // Do any additional setup after loading the view.
     
-    self.numberOfItems = 6;
+    self.numberOfItems = 10;
 }
 
 - (void)didReceiveMemoryWarning {
